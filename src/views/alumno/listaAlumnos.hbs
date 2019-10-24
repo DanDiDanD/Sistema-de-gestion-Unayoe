@@ -6,38 +6,42 @@
 
       <!-- Page Content -->
 
-      <br>
+   
+      <div class='row'>
 
-      <div class='centrarBarraFiltros'>
-
-        <div class="centrarSelects">
-          <input value="2019-2" style='width: 50%' type="text" class="form-control" disabled>
+        <div class="col-md-3">
+          <label>B&uacute;squeda</label>
+          <input type="text" class="form-control"  placeholder="Nombres/codigo/dni">
         </div>
 
-        <div class='centrarSelects'>
-          <label style="padding: 10px"></label>
+        <div class='col-md-2'>
+          <label>Escuela</label>
           <select class="form-control">
-
+             <option value="1">Sistemas</option>
+            <option value="2">Software</option>
           </select>
         </div>
 
-        <div class='centrarSelects'>
-          <label style="padding: 10px"></label>
+        <div class='col-md-3'>
+          <label>Observaci&oacute;n psicol&oacute;gica</label>
           <select class="form-control">
-            <option value="2"></option>
-            <option value="0"></option>
-            <option value="1"></option>
+             <option value="1">Todos</option>
+            <option value="2">Ansiedad</option>
+            <option value="0">Depresion</option>
           </select>
         </div>
 
-        <div class="form-check centrarSelects">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="">
-          </label>
+        <div class='col-md-3'>
+          <label>Cantidad desaprobados</label>
+          <select class="form-control">
+             <option value="1">2 - 4</option>
+            <option value="2">4 - 6</option>
+            <option value="0">7 a m&aacute;s</option>
+          </select>
         </div>
 
         <div>
-          <button type="button" class="btn btn-primary">Buscar</button>
+          <button type="button" class="btn btn-info" style="float:left;margin-top: 20px;">Buscar</button>
         </div>
 
 
@@ -48,11 +52,7 @@
       <!-- DataTables Example -->
       <div class="card mb-3">
         <div type="text" class="card-body">
-          <div class="table-responsive">
-            <div class='contenedorInputBuscarActivo'>
-                <input id="buscarCodigo" class="form-control" style="width: 15%" placeholder="Buscar código" />
-            </div>
-            
+          <div class="table-responsive">          
             <table  class="table table-bordered" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -63,6 +63,7 @@
                   <th>Sit. academica</th>
                   <th>Cant. desaprobados</th>
                   <th>Ponderado</th>
+
 
                 </tr>
               </thead>
@@ -80,6 +81,7 @@
 
                 {{/each}}
 
+
               </tbody>
             </table>
             
@@ -91,5 +93,3 @@
 
     </div>
     <!-- /.container-fluid -->
-
-  

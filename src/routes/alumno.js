@@ -14,10 +14,15 @@ router.get('/listaAlumnos',isLoggedIn, async (req, res) => {
 
 router.get('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
      const {idAlumno} =req.params;
-
      const [alumnoCompleto] = await pool.query('CALL sp_alumnoCompleto(?)', [idAlumno]); //a de alumnos
      
      res.render('alumno/perfilAlumno', {a: alumnoCompleto[0]});
+})
+
+router.post('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
+     const {idAlumno} = req.params;
+     await pool.query('CALL sp_EliminarAlumno(?)', [idAlumno]);
+     res.redirect('/alumno/listaAlumnos');
 })
 
 module.exports = router;

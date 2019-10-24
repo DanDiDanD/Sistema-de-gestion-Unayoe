@@ -10,8 +10,9 @@ redondearDos = (num) => {
      return +(Math.round(num + "e+2")  + "e-2");
 }
 
-
-module.exports = {
-     limpiarObjeto: limpiarObjeto,
-     redondearDos: redondearDos,
+confirmacion = (texto) => {
+     let confirmacion = confirm(texto);
+     return confirmacion;
 }
+
+

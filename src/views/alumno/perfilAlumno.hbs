@@ -4,77 +4,120 @@
                <div class="col-md-12 mx-auto">
                     <div class="card card-body">
                          <div class="well profile centrado">
-                              <div class="col-sm-12 ">
-                                   <div class="col-xs-12 col-sm-8 ">
-                                        <h2>{{a.alumnoApellidoPaterno}} {{a.alumnoApellidoMaterno}}, {{a.alumnoNombre}}
-                                        </h2>
-                                        <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
-                                        <h6><strong>Situacion: </strong>
-                                             <span class="badge badge-primary">Bien</span>
-                                        </h6>
+                              <div class="row">
+                                   <div class="col-sm-10">
+                                        <div class="col-xs-12 col-sm-8 ">
+                                             <h2>{{a.alumnoApellidoPaterno}} {{a.alumnoApellidoMaterno}}, {{a.alumnoNombre}}
+                                             </h2>
+                                             <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
+                                             <h6><strong>Situacion: </strong>
+                                                  <span class="badge badge-primary">Bien</span>
+                                             </h6>
+                                             
+                                             <br>
+                                        </div>
+                                   </div>
+                                   <div class="col-sm-2">
                                         <br>
+                                        <br>
+                                        <form action="/alumno/perfilAlumno/{{a.idAlumno}}" method="POST" onsubmit="return confirmacion('¿Desea eliminar a este estudiante?')">
+                                             <button type="submit" class="btn btn-danger"> Eliminar alumno</button>
+                                        </form>
                                    </div>
                               </div>
                               <div class="col-xs-12 divider">
 
                                    <br>
                                    <ul class="nav nav-tabs">
-                                        <li><a data-toggle="tab" class="nav-link active"
-                                                  href="#datos-perfilAcademicos">Perfil académico</a></li>
+                                        <li><a data-toggle="tab" class="nav-link active" href="#datos-perfilAcademicos">Perfil académico</a></li>
                                         <li><a data-toggle="tab" class="nav-link" href="#datos-personales">Datos personales</a></li>
-                                        <li><a data-toggle="tab" class="nav-link" href="#regimen-pensiones">Régimen de pensiones</a></li>
-                                        <li><a data-toggle="tab" class="nav-link" href="#remuneracion">Remuneración</a>
+                                        <li><a data-toggle="tab" class="nav-link" href="#datos-sum">Datos del SUM</a></li>
                                         </li>
                                    </ul>
                                    <br>
 
                                    <div class="tab-content">
                                         <div id="datos-perfilAcademicos" class="tab-pane fade active show">
-                                             <div class="col-sm-12 ">
-                                                  <div class="col-xs-12 col-sm-8">
-                                                       <p><strong>: </strong> {{a.alumnoApellidoPaterno}}</p>
-                                                       <p><strong>: </strong> {{a.alumnoApellidoMaterno}}</p>
-                                                       <p><strong>: </strong> {{a.alumnoNombre}}</p>
-                                                       <p><strong>: </strong> {{a.idAlumno}}</p>
-                                                       <p><strong>: </strong> {{a.alumnoDni}}</p>
-                                                       <p><strong>: </strong> {{a.alumno}}</p>
-                                                       <p><strong>: </strong> {{a.alumno}}</p>
-                                                       <p><strong>: </strong> {{a.alumno}}</p>
-                                                       <p><strong>: </strong> {{a.alumno}}</p>
+                                             <div class="row">
+                                                  <div class="col-sm-6 ">
+                                                  
+                                                       <div class="col-xs-12 col-sm-8">
+                                                            <p><strong>Apellido paterno: </strong> {{a.alumnoApellidoPaterno}}</p>
+                                                            <p><strong>Apellido materno: </strong> {{a.alumnoApellidoMaterno}}</p>
+                                                            <p><strong>Nombre: </strong> {{a.alumnoNombre}}</p>
+                                                            <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
+                                                            <p><strong>Dni: </strong> {{a.alumnoDni}}</p>
+                                                            <p><strong>Facultad: </strong> {{a.alumnoFacultad}}</p>
+
+
+                                                       </div>
                                                   </div>
+                                                  <div class="col-sm-6 ">
+                                                  
+                                                       <div class="col-xs-12 col-sm-8">
+                                                            <p><strong>Escuela: </strong> {{a.alumnoEscuela}}</p>
+                                                            <p><strong>Plan de estudio: </strong> {{a.alumnoPlan}}</p>
+                                                            <p><strong>Correo institucional: </strong> {{a.alumnoCorreoIns}}</p>
+                                                            <p><strong>Fecha de nacimiento: </strong> {{a.alumnoFechaNacimiento}}</p>
+                                                            <p><strong>Sexo: </strong> {{a.alumnoSexo}}</p>
+
+                                                       </div>
+                                                   </div>
+                                             </div>
+
+                                        </div>
+
+                                         <div id="datos-personales" class="tab-pane fade">
+                                             <div class="row">
+                                                  <div class="col-sm-6 ">
+                                                  
+                                                       <div class="col-xs-12 col-sm-8">
+                                                            <p><strong>Colegio de procedencia: </strong> {{a.ocColegioProced}}</p>
+                                                            <p><strong>Depende de alguien: </strong> {{a.ocDependeDe}}</p>
+                                                            <p><strong>Trabajo: </strong> {{a.ocTrabajo}}</p>
+                                                            <p><strong>Vive con alguien: </strong> {{a.ocViveCon}}</p>
+                                                            <p><strong>Tipo de vivienda: </strong> {{a.ocTipoVivienda}}</p>
+                                                            <p><strong>Tiempo de transporte: </strong> {{a.ocTiempoTransporte}}</p>
+                                                            <p><strong>Discapacidad presente: </strong> {{a.ocDicapacidad}}</p>
+                                                            <p><strong>Tipo de seguro: </strong> {{a.ocTipoSeguro}}</p>
+                                                            <p><strong>Observacion psicologica: </strong> {{a.ocObservacionPsicologica}}</p>
+                                                            <p><strong>Estado civil: </strong> {{a.ocEstadoCivil}}</p>
+
+
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-sm-6 ">
+                                                  
+                                                       <div class="col-xs-12 col-sm-8">
+                                                            <p><strong>Correo personal: </strong> {{a.ocCorreoPersonal}}</p>
+                                                            <p><strong>Numero de celular: </strong> {{a.ocNumeroMovil}}</p>
+                                                            <br>
+                                                            <p><strong>Apoderado: </strong> {{a.ocApoderado}}</p>
+                                                            <p><strong>Correo de apoderado: </strong> {{a.ocCorreoApoderado}}</p>
+                                                            <p><strong>Telef. casa: </strong> {{a.ocTelefCasa}}</p>
+                                                            <p><strong>Movil de apoderado: </strong> {{a.ocMovilApoderado}}</p>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <a href="/alumno/editarPerfil" class="btn btn-primary">Editar datos personales</a>
+                                                       </div>
+                                                   </div>
                                              </div>
                                         </div>
 
-                                        <div id="datos-personales" class="tab-pane fade">
-                                                                                          <div class="col-sm-12 ">
-                                                  <div class="col-xs-12 col-sm-8">
-                                                       <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
-                                                       <p><strong>Facultad: </strong> {{a.alumnoFacultad}}</p>
-                                                       <p><strong>Escuela Profesional: </strong> {{a.alumnoEscuela}}</p>
-
-                                                       <h6><strong>Situacion: </strong>
-                                                            <span class="badge badge-primary">Bien</span>
-                                                       </h6>
+                                        <div id="datos-sum" class="tab-pane fade">
+                                             <div class="row">
+                                                  <div class="col-sm-12 ">
+                                                       <div class="col-xs-12 col-sm-8">
+                                                            <p><strong>Ciclo actual del estudiantes: </strong> {{a.sumCiclo}}</p>
+                                                            <p><strong>Promedio ponderado: </strong> {{a.sumPromedioPonderado}}</p>
+                                                            <p><strong>N° Cursos desaprobados: </strong> {{a.sumCantDesaprobados}}</p>
+                                                            <p><strong>Permanencia académica: </strong> {{a.sumPermanencia}}</p>
+                                                            <p><strong>Situación académica: </strong> {{a.sumSituacionAcademica}}</p>
+                                                            <p><strong>Docente tutor: </strong> {{a.sumDocenteTutor}}</p>
+                                                       </div>
                                                   </div>
                                              </div>
-                                        </div>
-
-                                        <div id="regimen-pensiones" class="tab-pane fade">
-                                                                                          <div class="col-sm-12 ">
-                                                  <div class="col-xs-12 col-sm-8">
-                                                       <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
-                                                       <p><strong>Facultad: </strong> {{a.alumnoFacultad}}</p>
-                                                       <p><strong>Escuela Profesional: </strong> {{a.alumnoEscuela}}</p>
-
-                                                       <h6><strong>Situacion: </strong>
-                                                            <span class="badge badge-primary">Bien</span>
-                                                       </h6>
-                                                  </div>
-                                             </div>
-                                        </div>
-
-                                        <div id="remuneracion" class="tab-pane fade">
-                                             <h3>4</h3>
                                         </div>
 
                                    </div>

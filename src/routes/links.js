@@ -32,12 +32,14 @@ router.get('/', async (req, res) => {
 router.get('/delete/:id', async (req, res) => {
      const {id} = req.params;
      //await pool.query('DELETE FROM links WHERE id = ?', [id]);
+     let c = confirm('hoe cerrano');
      res.redirect('/links');
 })
 
 router.get('/edit/:id', async (req,res) => {
      const {id} =req.params;
      let links = [];  // TIENES QUE SER CONST
+     
      //links = await pool.query('SELECT * FROM links WHERE id = ?',[id]);
      res.render('links/edit', {links: links[0]});
 })
