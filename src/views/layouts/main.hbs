@@ -29,32 +29,34 @@
   {{>navigation}}
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    {{#if user}}
     <ul class="sidebar navbar-nav">
+    <ul class="sidebar navbar-nav" style="background-color:#0c2642;">
       <li class="nav-item active">
         <a class="nav-link" href="/cargaOca">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span> Carga </span>
+            <i class="fas fa-fw fa-file-upload"></i>
+          <span> Actualizar semestre </span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/alumno">
           <i class="fas fa-fw fa-tools"></i>
+         <i class="fas fa-fw fa-tasks"></i>
           <span>Lista de alumnos</span>
         </a>
       </li>
 
       <li class="nav-item">
+    <!--  <li class="nav-item">
         <a class="nav-link" href="/links">
           <i class="fas fa-fw fa-tools"></i>
           <span>Links (guia)</span>
         </a>
-      </li>
+      </li>!-->
 
     </ul>
-    {{/if}}
 
 
     <div id="content-wrapper">
