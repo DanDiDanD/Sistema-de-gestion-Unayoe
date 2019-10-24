@@ -1,0 +1,107 @@
+<div class="tab-content">
+     <div class="container p-11">
+          <div class="row">
+               <div class="col-md-12 mx-auto">
+                    <div class="card card-body">
+                         <div class="well profile centrado">
+                              <div class="row">
+                                   <div class="col-sm-10">
+                                        <div class="col-xs-12 col-sm-8 ">
+                                             <h2>{{a.alumnoApellidoPaterno}} {{a.alumnoApellidoMaterno}},
+                                                  {{a.alumnoNombre}}
+                                             </h2>
+                                             <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
+                                             <h6><strong>Situacion: </strong>
+                                                  <span class="badge badge-primary">Bien</span>
+                                             </h6>
+
+                                             <br>
+                                        </div>
+                                   </div>
+                                   <div class="col-sm-2">
+                                        <br>
+                                        <a type="button" href="/alumno/PerfilAlumno/{{a.idAlumno}}" class="btn btn-warning"> Regresar al perfil</a>
+                                        <br>
+                                   </div>
+                              </div>
+                              <div class="col-xs-12 divider">
+
+                                   <br>
+                                   <br>
+                                   <br>
+
+                                   <form action="/alumno/editarPerfilAlumno/{{a.idAlumno}}" method="POST">
+                                        <div class="row">
+                                             <div class="col-sm-6 ">
+
+                                                  <div class="col-xs-12 col-sm-8 form-group">
+                                                       <p><strong>Colegio de procedencia: </strong> <input type="text"
+                                                                 name="ocColegioProced" class="form-control"
+                                                                 value="{{a.ocColegioProced}}"></p>
+                                                       <p><strong>Depende de alguien: </strong><input type="text"
+                                                                 name="ocDependeDe" class="form-control"
+                                                                 value="{{a.ocDependeDe}}"> </p>
+                                                       <p><strong>Trabajo: </strong><input type="text" name="ocTrabajo"
+                                                                 class="form-control" value="{{a.ocTrabajo}}"> </p>
+                                                       <p><strong>Vive con alguien: </strong><input type="text"
+                                                                 name="ocViveCon" class="form-control"
+                                                                 value="{{a.ocViveCon}}"> </p>
+                                                       <p><strong>Tipo de vivienda: </strong><input type="text"
+                                                                 name="ocTipoVivienda" class="form-control"
+                                                                 value="{{a.ocTipoVivienda}}"> </p>
+                                                       <p><strong>Tiempo de transporte: </strong> <input type="text"
+                                                                 name="ocTiempoTransporte" class="form-control"
+                                                                 value="{{a.ocTiempoTransporte}}"> </p>
+                                                       <p><strong>Discapacidad presente: </strong><input type="text"
+                                                                 name="ocDicapacidad" class="form-control"
+                                                                 value="{{a.ocDicapacidad}}"> </p>
+                                                       <p><strong>Tipo de seguro: </strong><input type="text"
+                                                                 name="ocTipoSeguro" class="form-control"
+                                                                 value="{{a.ocTipoSeguro}}"> </p>
+                                                       <p><strong>Estado civil: </strong> <input type="text"
+                                                                 name="ocEstadoCivil" class="form-control"
+                                                                 value="{{a.ocEstadoCivil}}"> </p>
+
+
+                                                  </div>
+                                             </div>
+                                             <div class="col-sm-6 ">
+                                                  <div class="col-xs-12 col-sm-8 form-group">
+                                                       <p><strong>Correo personal: </strong> <input type="text"
+                                                                 name="ocCorreoPersonal" class="form-control"
+                                                                 value="{{a.ocCorreoPersonal}}"></p>
+                                                       <p><strong>Numero
+                                                                 de celular: </strong> <input type="text"
+                                                                 name="ocNumeroMovil" class="form-control"
+                                                                 value="{{a.ocNumeroMovil}}"> </p> <br>
+                                                       <p><strong>Apoderado: </strong> <input type="text"
+                                                                 name="ocApoderado" class="form-control"
+                                                                 value="{{a.ocApoderado}}"> </p>
+                                                       <p><strong>Correo
+                                                                 de apoderado: </strong> <input type="text"
+                                                                 name="ocCorreoApoderado" class="form-control"
+                                                                 value="{{a.ocCorreoApoderado}}"> </p>
+                                                       <p><strong>Telef. casa: </strong> <input type="text"
+                                                                 name="ocTelefCasa" class="form-control"
+                                                                 value="{{a.ocTelefCasa}}">
+                                                       </p>
+                                                       <p><strong>Movil de apoderado: </strong>
+                                                            <input type="text" name="ocMovilApoderado"
+                                                                 class="form-control" value="{{a.ocMovilApoderado}}">
+                                                       </p> <br>
+                                                       <br>
+                                                       <br>
+                                                       <button type="submit" class="btn btn-primary"> Editar
+                                                            datos</button>
+                                                  </div>
+                                             </div>
+
+                                        </div>
+                                   </form>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

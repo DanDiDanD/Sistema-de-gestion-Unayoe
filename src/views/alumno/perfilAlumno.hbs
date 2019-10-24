@@ -19,6 +19,8 @@
                                    </div>
                                    <div class="col-sm-2">
                                         <br>
+                                        <a type="button" href="/alumno/listaAlumnos" class="btn btn-warning"> Regresar a la lista</a>
+                                        <br>
                                         <br>
                                         <form action="/alumno/perfilAlumno/{{a.idAlumno}}" method="POST" onsubmit="return confirmacion('¿Desea eliminar a este estudiante?')">
                                              <button type="submit" class="btn btn-danger"> Eliminar alumno</button>
@@ -99,7 +101,7 @@
                                                             <br>
                                                             <br>
                                                             <br>
-                                                            <a href="/alumno/editarPerfil" class="btn btn-primary">Editar datos personales</a>
+                                                            <a href="/alumno/editarPerfilAlumno/{{a.idAlumno}}" class="btn btn-primary">Editar datos personales</a>
                                                        </div>
                                                    </div>
                                              </div>
