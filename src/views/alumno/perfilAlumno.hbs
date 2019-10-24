@@ -1,0 +1,66 @@
+<div class="tab-content">
+     <div class="container p-11">
+          <div class="row">
+               <div class="col-md-12 mx-auto">
+                    <div class="card card-body">
+                         <div class="well profile centrado">
+                              <div class="col-sm-12 ">
+                                   <div class="col-xs-12 col-sm-8 ">
+                                        <h2>{{a.alumnoApellidoPaterno}} {{a.alumnoApellidoMaterno}}, {{a.alumnoNombre}}
+                                        </h2>
+                                        <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
+                                        <h6><strong>Situacion: </strong>
+                                             <span class="badge badge-primary">Bien</span>
+                                        </h6>
+                                        <br>
+                                   </div>
+                              </div>
+                              <div class="col-xs-12 divider">
+
+                                   <br>
+                                   <ul class="nav nav-tabs">
+                                        <li><a data-toggle="tab" class="nav-link active"
+                                                  href="#datos-perfilAcademicos">Perfil académico</a></li>
+                                        <li><a data-toggle="tab" class="nav-link" href="#datos-personales">Datos personales</a></li>
+                                        <li><a data-toggle="tab" class="nav-link" href="#regimen-pensiones">Régimen de pensiones</a></li>
+                                        <li><a data-toggle="tab" class="nav-link" href="#remuneracion">Remuneración</a>
+                                        </li>
+                                   </ul>
+                                   <br>
+
+                                   <div class="tab-content">
+                                        <div id="datos-perfilAcademicos" class="tab-pane fade active show">
+                                             <div class="col-sm-12 ">
+                                                  <div class="col-xs-12 col-sm-8">
+                                                       <p><strong>Codigo: </strong> {{a.idAlumno}}</p>
+                                                       <p><strong>Facultad: </strong> {{a.alumnoFacultad}}</p>
+                                                       <p><strong>Escuela Profesional: </strong> {{a.alumnoEscuela}}</p>
+
+                                                       <h6><strong>Situacion: </strong>
+                                                            <span class="badge badge-primary">Bien</span>
+                                                       </h6>
+                                                  </div>
+                                             </div>
+                                        </div>
+
+                                        <div id="datos-personales" class="tab-pane fade">
+                                             <h3>2</h3>
+                                        </div>
+
+                                        <div id="regimen-pensiones" class="tab-pane fade">
+                                             <h3>3</h3>
+                                        </div>
+
+                                        <div id="remuneracion" class="tab-pane fade">
+                                             <h3>4</h3>
+                                        </div>
+
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

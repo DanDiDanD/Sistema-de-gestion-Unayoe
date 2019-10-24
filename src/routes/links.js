@@ -14,14 +14,17 @@ router.post('/add', async (req, res) => {
           url: url,
           description: description
      };
-     //await pool.query('INSERT INTO links SET ?', [newLink]);
+     await pool.query('INSERT INTO links SET ?', [newLink]);
      
      res.redirect('/links');
 })
 
 router.get('/', async (req, res) => {
-     let links = [];   // TIENES QUE SER CONST
-     //links = await pool.query('SELECT * FROM links');
+     // let links = [];   // TIENES QUE SER CONST
+     // links = await pool.query('SELECT * FROM links');
+     const links = await pool.query('SELECT * FROM links');
+     console.log(links);
+     
      res.render('links/list', {links});
      
 })

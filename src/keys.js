@@ -4,5 +4,6 @@ module.exports = {
           user: 'root',
           password: '',
           database: 'bdunayoe'
+          //database: 'database_links'
      }
 }

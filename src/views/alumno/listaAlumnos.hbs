@@ -57,21 +57,28 @@
               <thead>
                 <tr>
                   <th>Codigo</th>
-                  <th>Plan</th>
-                  <th>Ciclo</th>
                   <th>Ap. Paterno</th>
                   <th>Ap. Materno</th>
-                  <th>Nombre</th>
                   <th>E.P.</th>
                   <th>Sit. academica</th>
-                  <th>Obs. psicológica</th>
                   <th>Cant. desaprobados</th>
                   <th>Ponderado</th>
 
                 </tr>
               </thead>
               <tbody>
+                {{#each alumnos}}
+                  <tr>
+                    <td><a href="/alumno/PerfilAlumno/{{idAlumno}}">{{idAlumno}}</a></td>
+                    <td>{{alumnoApellidoPaterno}}</td>
+                    <td>{{alumnoApellidoMaterno}}</td>
+                    <td>{{alumnoEscuela}}</td>
+                    <td>{{sumSituacionAcademica}}</td>
+                    <td>No obtenida</td>
+                    <td>{{sumPromedioPonderado}}</td>
+                  </tr>
 
+                {{/each}}
 
               </tbody>
             </table>
