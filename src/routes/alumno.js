@@ -9,6 +9,8 @@ router.get('/',isLoggedIn, (req, res) => {
 
 router.get('/listaAlumnos',isLoggedIn, async (req, res) => {
      const [alumnos] = await pool.query('CALL sp_listaDeAlumnos()');
+     console.log(alumnos);
+     
      res.render('alumno/listaAlumnos', {alumnos});
 })
 
