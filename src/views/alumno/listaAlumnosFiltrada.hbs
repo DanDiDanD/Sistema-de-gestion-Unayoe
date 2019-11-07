@@ -10,12 +10,12 @@
       <div class='row'>
           <div class="col-md-3">
             <label>B&uacute;squeda</label>
-            <input type="text" class="form-control"  placeholder="Nombres/codigo/dni" name="nombre">
+            <input type="text" class="form-control"  placeholder="Nombres/codigo/dni" name="nombre" value="{{filtros.nombre}}">
           </div>
 
           <div class='col-md-2'>
             <label>Escuela</label>
-            <select class="form-control" name="escuela">
+            <select class="form-control" name="escuela" value="{{filtros.escuela}}">
               <option value="0">Ambos</option>
               <option value="1">Sistemas</option>
               <option value="2">Software</option>
@@ -24,7 +24,7 @@
 
           <div class='col-md-2'>
             <label>Observaci&oacute;n psicol&oacute;gica</label>
-            <select class="form-control" name="observacion">
+            <select class="form-control" name="observacion" value="{{filtros.observacion}}">
               <option value="0">Todos</option>
               <option value="1">Ansiedad</option>
               <option value="2">Depresion</option>
@@ -33,12 +33,12 @@
 
           <div class='col-md-2'>
             <label>Cantidad desaprobados mayor a</label>
-              <input type="number" class="form-control" name="desaprobados">
+              <input type="number" class="form-control" name="desaprobados" value="{{filtros.desaprobados}}">
           </div>
 
           <div class='col-md-2'>
             <label>Ponderado menor a</label>
-              <input type="number" class="form-control" name="ponderado">
+              <input type="number" class="form-control" name="ponderado" value="{{filtros.ponderado}}">
           </div>
 
           <div>
@@ -73,13 +73,13 @@
               <tbody>
                 {{#each alumnos}}
                   <tr>
-                    <td><a href="/alumno/PerfilAlumno/{{idAlumno}}">{{idAlumno}}</a></td>
-                    <td>{{alumnoApellidoPaterno}}</td>
-                    <td>{{alumnoApellidoMaterno}}</td>
-                    <td>{{alumnoEscuela}}</td>
-                    <td>{{sumSituacionAcademica}}</td>
-                    <td>No obtenida</td>
-                    <td>{{sumPromedioPonderado}}</td>
+                    <td><a href="/alumno/PerfilAlumno/{{codigo}}">{{codigo}}</a></td>
+                    <td>{{ApePaterno}}</td>
+                    <td>{{ApeMaterno}}</td>
+                    <td>{{Escuela}}</td>
+                    <td>{{SitAcademica}}</td>
+                    <td>{{NumDesaprobados}}</td>
+                    <td>{{Ponderado}}</td>
                   </tr>
 
                 {{/each}}
