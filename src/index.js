@@ -11,6 +11,8 @@ const session = require('express-session');
 const MySQLStore= require('express-mysql-session');
 const {database} = require('./keys');
 const passport = require('passport');
+// const PDF = require('pdfkit');
+// const fs = require('fs');
 
 //inicializaciones
 const app = express();
@@ -75,6 +77,28 @@ app.get('/', async (req, res) => {
      res.render('index/index.hbs');
      
 })
+
+// app.post('/listaAlumnos2', async (req, res) => { 
+//      let doc = new PDF();
+
+//      doc.pipe(fs.createWriteStream(__dirname + '/example.pdf'));
+
+//      doc.text('qué fue mano', {
+//           align: 'center'
+//      });
+
+//      let parrafo = `En este videotutorial explicaré la forma en que podemos generar archivos PDF desde NodeJS. Para ello estaremos utilizando 'pdfkit', una librería diseñada para la generación de documentos de pdf la cual esta muy bien documentada y nos permite trabajar con imágenes, dibujos vectoriales, fuentes y textos. Aunque aún no soporta el trabajo con tablas, en su página principal detallan que es un feature que se viene pronto...
+//      `;
+
+//      doc.text(parrafo, {
+//           columns: 3,
+//           align: 'justify'
+//      })
+
+//      doc.end();
+
+//      console.log('Archivo generado');
+// })
 
 app.post('/cargaOca',async (req,res)=>{
 let file = req.files.filename;

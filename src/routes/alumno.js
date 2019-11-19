@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../database');
 const {isLoggedIn} = require('../lib/auth');
+const PDF = require('pdfkit');
+const fs = require('fs');
 
 router.get('/',isLoggedIn, (req, res) => {
      res.redirect('alumno/listaAlumnos');
@@ -12,6 +14,80 @@ router.get('/listaAlumnos',isLoggedIn, async (req, res) => {
      console.log(alumnos);
      
      res.render('alumno/listaAlumnos', {alumnos});
+})
+
+router.post('/listaAlumnos2', async (req, res) => { 
+     const {id,
+          apellidos,
+          nombre,
+          escuela,
+          situacion,
+          desaprobados,
+          ponderado
+     } = req.body;
+     
+     const length = id.length;
+
+     let doc = new PDF();
+     try{
+          doc.pipe(fs.createWriteStream(__dirname + '../../../pdf/lista_de_alumnos.pdf'));
+
+          doc.text('Lista de alumnos', {
+               align: 'center'
+          });
+     
+          let salto_de_linea = `
+          `;
+     
+          doc.text(salto_de_linea, {
+               columns: 3,
+               align: 'justify'
+          })
+     
+          for(let i = 0; i<length ; i++){
+               let nombreCompleto = apellidos[i].toUpperCase();
+               nombreCompleto += ', ';
+               nombreCompleto += nombre[i].toLowerCase();
+     
+     
+               let nuevaEscuela='';
+               if(escuela[i] == 'sis'){
+                    nuevaEscuela = 'sistemas';
+               }
+               else if (escuela[i] == 'sw'){
+                    nuevaEscuela = 'software';
+               }
+               else {
+                    nuevaEscuela = '        ';
+               }
+     
+               let nuevoPonderado = '';
+               
+               if(ponderado[i].length == 3){
+                    console.log('Hola Mundo');
+                    
+                    nuevoPonderado += '  ';
+               }
+               nuevoPonderado += ponderado[i].toString();
+     
+               
+               doc.text(id[i],50,(i*15 + 100),{});
+               doc.text(nombreCompleto,110,(i*15 + 100),{});
+     
+               doc.text(nuevaEscuela,350,(i*15 + 100),{});
+               doc.text(situacion[i],430,(i*15 + 100),{});
+               doc.text(desaprobados[i],480,(i*15 + 100),{});
+               doc.text(nuevoPonderado,500,(i*15 + 100),{});
+     
+          }
+     
+          doc.end();
+     
+          console.log('Archivo generado');
+          res.redirect('/alumno/listaAlumnos');
+     }catch(e){
+          throw e;
+     }
 })
 
 
@@ -30,11 +106,11 @@ router.post('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
 
 router.post('/listaAlumnos',isLoggedIn, async (req, res) => {
      let {nombre,
-               escuela,
-               observacion,
-               desaprobados,
-               ponderado} = req.body;
-     
+          escuela,
+          observacion,
+          desaprobados,
+          ponderado} = req.body;
+
      if(escuela == 1){
           escuela = 'sis';
      }
@@ -143,6 +219,7 @@ router.post('/listaAlumnos',isLoggedIn, async (req, res) => {
      
      res.render('alumno/listaAlumnosFiltrada', {alumnos: a, filtros: filtros});    
      
+  
 })
 
 router.get('/editarPerfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {

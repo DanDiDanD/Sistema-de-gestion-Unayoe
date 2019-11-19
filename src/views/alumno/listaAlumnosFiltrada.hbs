@@ -13,7 +13,7 @@
             <input type="text" class="form-control"  placeholder="Nombres/codigo/dni" name="nombre" value="{{filtros.nombre}}">
           </div>
 
-          <div class='col-md-2'>
+          <div class='col-md-1'>
             <label>Escuela</label>
             <select class="form-control" name="escuela" value="{{filtros.escuela}}">
               <option value="0">Ambos</option>
@@ -40,13 +40,9 @@
             <label>Ponderado menor a</label>
               <input type="number" class="form-control" name="ponderado" value="{{filtros.ponderado}}">
           </div>
-
-          <div>
+          <div class='col-md-1'>
             <button type="submit" class="btn btn-info" style="float:left;margin-top: 20px;">Buscar</button>
-            {{!-- <button type="submit" class="btn btn-primary"> Editar datos</button> --}}
           </div>
-          
-
         
       </div>
     </form>
@@ -72,6 +68,7 @@
                 </tr>
               </thead>
               <tbody>
+                <form action="/alumno/listaAlumnos2" method="POST">
                 {{#each alumnos}}
                   <tr>
                     <td><a href="/alumno/PerfilAlumno/{{codigo}}">{{codigo}}</a></td>
@@ -83,9 +80,16 @@
                     <td>{{NumDesaprobados}}</td>
                     <td>{{Ponderado}}</td>
                   </tr>
-
+                  <input style="display:none" type="text" name="id" value="{{codigo}}">
+                  <input style="display:none" type="text" name="apellidos" value="{{ApePaterno}} {{ApeMaterno}}">
+                  <input style="display:none" type="text" name="nombre" value="{{Nombre}}">
+                  <input style="display:none" type="text" name="escuela" value="{{Escuela}}">
+                  <input style="display:none" type="text" name="situacion" value="{{SitAcademica}}">
+                  <input style="display:none" type="text" name="desaprobados" value="{{NumDesaprobados}}">
+                  <input style="display:none" type="text" name="ponderado" value="{{Ponderado}}">
                 {{/each}}
-
+                 <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;" formaction="/alumno/listaAlumnos2">Imprimir</button>
+                </form>
 
               </tbody>
             </table>

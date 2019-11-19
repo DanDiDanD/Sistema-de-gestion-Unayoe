@@ -13,7 +13,7 @@
             <input type="text" class="form-control"  placeholder="Nombres/codigo/dni" name="nombre">
           </div>
 
-          <div class='col-md-2'>
+          <div class='col-md-1'>
             <label>Escuela</label>
             <select class="form-control" name="escuela">
               <option value="0">Ambos</option>
@@ -41,15 +41,18 @@
               <input type="number" class="form-control" name="ponderado">
           </div>
 
-          <div>
+          <div class='col-md-1'>
             <button type="submit" class="btn btn-info" style="float:left;margin-top: 20px;">Buscar</button>
-            {{!-- <button type="submit" class="btn btn-primary"> Editar datos</button> --}}
+          </div>
+          <div class='col-md-1'>
+            {{!-- <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;" formaction="/alumno/listaAlumnos2">Imprimir</button> --}}
           </div>
           
 
         
       </div>
     </form>
+    
 
      <br>
       <!-- DataTables Example -->
@@ -72,6 +75,8 @@
                 </tr>
               </thead>
               <tbody>
+                <form action="/alumno/listaAlumnos2" method="POST">
+
                 {{#each alumnos}}
                   <tr>
                     <td><a href="/alumno/PerfilAlumno/{{idAlumno}}">{{idAlumno}}</a></td>
@@ -83,9 +88,17 @@
                     <td>{{sumCantDesaprobados}}</td>
                     <td>{{sumPromedioPonderado}}</td>
                   </tr>
+                  <input style="display:none" type="text" name="id" value="{{idAlumno}}">
+                  <input style="display:none" type="text" name="apellidos" value="{{alumnoApellidoPaterno}} {{alumnoApellidoMaterno}}">
+                  <input style="display:none" type="text" name="nombre" value="{{alumnoNombre}}">
+                  <input style="display:none" type="text" name="escuela" value="{{alumnoEscuela}}">
+                  <input style="display:none" type="text" name="situacion" value="{{sumSituacionAcademica}}">
+                  <input style="display:none" type="text" name="desaprobados" value="{{sumCantDesaprobados}}">
+                  <input style="display:none" type="text" name="ponderado" value="{{sumPromedioPonderado}}">
 
                 {{/each}}
-
+                  <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;" formaction="/alumno/listaAlumnos2">Imprimir</button>
+                </form>
 
               </tbody>
             </table>
@@ -98,3 +111,6 @@
 
     </div>
     <!-- /.container-fluid -->
+
+
+{{!-- {{idAlumno}} {{alumnoApellidoPaterno}} {{alumnoApellidoMaterno}} {{alumnoNombre}} {{alumnoEscuela}} {{sumSituacionAcademica}} {{sumCantDesaprobados}} {{sumPromedioPonderado}} --}}
