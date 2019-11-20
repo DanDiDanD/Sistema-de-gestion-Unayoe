@@ -60,6 +60,7 @@ app.use(require('./routes/authentication'));
 app.use('/links',require('./routes/links'));
 app.use('/index',require('./routes/index'));
 app.use('/alumno',require('./routes/alumno'));
+app.use('/citas',require('./routes/citas'));
 
 
 //Archivos Publicos

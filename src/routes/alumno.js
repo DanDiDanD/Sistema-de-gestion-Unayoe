@@ -49,16 +49,12 @@ router.post('/listaAlumnos2', async (req, res) => {
                nombreCompleto += ', ';
                nombreCompleto += nombre[i].toLowerCase();
      
-     
                let nuevaEscuela='';
                if(escuela[i] == 'sis'){
                     nuevaEscuela = 'sistemas';
                }
                else if (escuela[i] == 'sw'){
                     nuevaEscuela = 'software';
-               }
-               else {
-                    nuevaEscuela = '        ';
                }
      
                let nuevoPonderado = '';
@@ -78,7 +74,6 @@ router.post('/listaAlumnos2', async (req, res) => {
                doc.text(situacion[i],430,(i*15 + 100),{});
                doc.text(desaprobados[i],480,(i*15 + 100),{});
                doc.text(nuevoPonderado,500,(i*15 + 100),{});
-     
           }
      
           doc.end();

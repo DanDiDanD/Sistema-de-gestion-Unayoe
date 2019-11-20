@@ -1,0 +1,60 @@
+<br>
+    <div class="div container-fluid">
+     <h3> Lista de citas</h3>
+
+      <!-- Breadcrumbs-->
+
+      <!-- Page Content -->
+
+
+    
+
+     <br>
+      <!-- DataTables Example -->
+      <div class="card mb-3">
+        <div type="text" class="card-body">
+          <div class="table-responsive">          
+            <table  class="table table-bordered" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Codigo</th>
+                  <th>Nombre</th>
+                  <th>Escuela</th>
+                  <th>Sit. Academica</th>
+                  <th>Motivo</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+
+                </tr>
+              </thead>
+              <tbody>
+
+                {{#each citas}}
+                  <tr>
+                    <td><a href="/alumno/PerfilAlumno/{{idAlumno}}">{{idAlumno}}</a></td>
+                    <td>{{ApePaterno}} {{ApeMaterno}}, {{Nombre}}</td>
+                    <td>{{Escuela}}</td>
+                    <td>{{SitAcademica}}</td>
+                    <td>{{citaMotivo}}</td>
+                    <td>{{citaFecha}}</td>
+                    <td>{{citaHora}}</td>
+                  </tr>
+                  <input style="display:none" type="text" name="id" value="{{a.idAlumno}}">
+
+
+                {{/each}}
+                  
+
+              </tbody>
+            </table>
+            
+          
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+
