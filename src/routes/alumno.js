@@ -11,8 +11,6 @@ router.get('/',isLoggedIn, (req, res) => {
 
 router.get('/listaAlumnos',isLoggedIn, async (req, res) => {
      const [alumnos] = await pool.query('CALL sp_listaDeAlumnos()');
-     console.log(alumnos);
-     
      res.render('alumno/listaAlumnos', {alumnos});
 })
 
@@ -88,9 +86,33 @@ router.post('/listaAlumnos2', async (req, res) => {
 
 router.get('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
      const {idAlumno} =req.params;
+
      const [alumnoCompleto] = await pool.query('CALL sp_alumnoCompleto(?)', [idAlumno]); //a de alumnos
+     const citas = await pool.query('SELECT * FROM cita WHERE Alumno_idAlumno = ?', [idAlumno]);
      
-     res.render('alumno/perfilAlumno', {a: alumnoCompleto[0]});
+     let length = citas.length;
+
+     for(let i = 0 ; i < length; i++){
+          let date = new Date(citas[i].citaFecha);
+          mnth = ("0" + (date.getMonth()+1)).slice(-2),
+          day  = ("0" + date.getDate()).slice(-2);
+          hours  = ("0" + date.getHours()).slice(-2);
+          minutes = ("0" + date.getMinutes()).slice(-2);
+          citas[i].citaFecha = `${day}-${mnth}-${date.getFullYear()} `;
+          let xm = 'a. m.';
+          if(hours>12){
+               hours = hours - 12;
+               xm = 'p. m.';
+          }
+          let citaHora = `${hours} : ${minutes} ${xm}`;
+           
+          citas[i].citaHora = citaHora;
+
+     }
+     
+     console.log(citas);
+     
+     res.render('alumno/perfilAlumno', {a: alumnoCompleto[0], citas: citas});
 })
 
 router.post('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
@@ -180,12 +202,8 @@ router.post('/listaAlumnos',isLoggedIn, async (req, res) => {
           query+=condiciones;
      }
      query += `order by a.idAlumno desc;`;
-                              
-     
-     console.log(query);
-     
+
      const a = await pool.query(query);
-     console.log(a);
      
 
      if(escuela == 'sis'){
@@ -210,7 +228,6 @@ router.post('/listaAlumnos',isLoggedIn, async (req, res) => {
           desaprobados,
           ponderado
      };
-     console.log(filtros);
      
      res.render('alumno/listaAlumnosFiltrada', {alumnos: a, filtros: filtros});    
      
