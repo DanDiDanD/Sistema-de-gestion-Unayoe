@@ -13,8 +13,44 @@
                                              <h6><strong>Situacion: </strong>
                                                   <span class="badge badge-primary">Bien</span>
                                              </h6>
-                                             
-                                             <br>
+                                             <form action="/alumno/imprimirAlumno" method="POST">
+                                                  <input type="text" name='imprimir_idAlumno' style="display:none;" value="{{a.idAlumno}}">
+                                                  <input type="text" name='imprimir_alumnoDni' style="display:none;" value="{{a.alumnoDni}}">
+                                                  <input type="text" name='imprimir_alumnoFacultad' style="display:none;" value="{{a.alumnoFacultad}}">
+                                                  <input type="text" name='imprimir_alumnoEscuela' style="display:none;" value="{{a.alumnoEscuela}}">
+                                                  <input type="text" name='imprimir_alumnoApellidoPaterno' style="display:none;" value="{{a.alumnoApellidoPaterno}}">
+                                                  <input type="text" name='imprimir_alumnoApellidoMaterno' style="display:none;" value="{{a.alumnoApellidoMaterno}}">
+                                                  <input type="text" name='imprimir_alumnoNombre' style="display:none;" value="{{a.alumnoNombre}}">
+                                                  <input type="text" name='imprimir_alumnoFechaNacimento' style="display:none;" value="{{a.alumnoFechaNacimento}}">
+                                                  <input type="text" name='imprimir_alumnoSexo' style="display:none;" value="{{a.alumnoSexo}}">
+                                                  <input type="text" name='imprimir_alumnoCorreoIns' style="display:none;" value="{{a.alumnoCorreoIns}}">
+                                                  <input type="text" name='imprimir_alumnoPlan' style="display:none;" value="{{a.alumnoPlan}}">
+                                                  <input type="text" name='imprimir_ocColegioProced' style="display:none;" value="{{a.ocColegioProced}}">
+                                                  <input type="text" name='imprimir_ocDependeDe' style="display:none;" value="{{a.ocDependeDe}}">
+                                                  <input type="text" name='imprimir_ocTrabajo' style="display:none;" value="{{a.ocTrabajo}}">
+                                                  <input type="text" name='imprimir_ocViveCon' style="display:none;" value="{{a.ocViveCon}}">
+                                                  <input type="text" name='imprimir_ocTipoVivienda' style="display:none;" value="{{a.ocTipoVivienda}}">
+                                                  <input type="text" name='imprimir_ocTiempoTransporte' style="display:none;" value="{{a.ocTiempoTransporte}}">
+                                                  <input type="text" name='imprimir_ocDicapacidad' style="display:none;" value="{{a.ocDicapacidad}}">
+                                                  <input type="text" name='imprimir_ocTipoSeguro' style="display:none;" value="{{a.ocTipoSeguro}}">
+                                                  <input type="text" name='imprimir_ocApoderado' style="display:none;" value="{{a.ocApoderado}}">
+                                                  <input type="text" name='imprimir_ocCorreoApoderado' style="display:none;" value="{{a.ocCorreoApoderado}}">
+                                                  <input type="text" name='imprimir_ocTelefCasa' style="display:none;" value="{{a.ocTelefCasa}}">
+                                                  <input type="text" name='imprimir_ocMovilApoderado' style="display:none;" value="{{a.ocMovilApoderado}}">
+                                                  <input type="text" name='imprimir_ocEstadoCivil' style="display:none;" value="{{a.ocEstadoCivil}}">
+                                                  <input type="text" name='imprimir_ocNumeroMovil' style="display:none;" value="{{a.ocNumeroMovil}}">
+                                                  <input type="text" name='imprimir_ocCorreoPersonal' style="display:none;" value="{{a.ocCorreoPersonal}}">
+                                                  <input type="text" name='imprimir_ocObservacionPsicologica' style="display:none;" value="{{a.ocObservacionPsicologica}}">
+                                                  <input type="text" name='imprimir_sumPromedioPonderado' style="display:none;" value="{{a.sumPromedioPonderado}}">
+                                                  <input type="text" name='imprimir_sumCantDesaprobados' style="display:none;" value="{{a.sumCantDesaprobados}}">
+                                                  <input type="text" name='imprimir_sumCiclo' style="display:none;" value="{{a.sumCiclo}}">
+                                                  <input type="text" name='imprimir_sumPermanencia' style="display:none;" value="{{a.sumPermanencia}}">
+                                                  <input type="text" name='imprimir_sumSituacionAcademica' style="display:none;" value="{{a.sumSituacionAcademica}}">
+                                                  <input type="text" name='imprimir_sumDocenteTutor' style="display:none;" value="{{a.sumDocenteTutor}}">
+
+                                                  <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;margin-bottom:15px" formaction="/alumno/imprimirAlumno"><i class="fas fa-print"></i> Imprimir alumno</button>
+                                                  <br>
+                                             </form>
                                         </div>
                                    </div>
                                    <div class="col-sm-2">
@@ -60,7 +96,7 @@
                                                             <p><strong>Escuela: </strong> {{a.alumnoEscuela}}</p>
                                                             <p><strong>Plan de estudio: </strong> {{a.alumnoPlan}}</p>
                                                             <p><strong>Correo institucional: </strong> {{a.alumnoCorreoIns}}</p>
-                                                            <p><strong>Fecha de nacimiento: </strong> {{a.alumnoFechaNacimiento}}</p>
+                                                            <p><strong>Fecha de nacimiento: </strong> {{a.alumnoFechaNacimento}}</p>
                                                             <p><strong>Sexo: </strong> {{a.alumnoSexo}}</p>
 
                                                        </div>

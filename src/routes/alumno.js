@@ -24,7 +24,16 @@ router.post('/listaAlumnos2', async (req, res) => {
           ponderado
      } = req.body;
      
-     const length = id.length;
+     let bandera;
+     let length;
+     if(Array.isArray(id)){
+          bandera = true;
+          length= id.length;
+     }
+     else{
+          bandera = false;
+     }
+     
 
      let doc = new PDF();
      try{
@@ -41,43 +50,200 @@ router.post('/listaAlumnos2', async (req, res) => {
                columns: 3,
                align: 'justify'
           })
-     
-          for(let i = 0; i<length ; i++){
-               let nombreCompleto = apellidos[i].toUpperCase();
+          
+          if(bandera == true){
+               for(let i = 0; i<length ; i++){
+                    let nombreCompleto = apellidos[i].toUpperCase();
+                    nombreCompleto += ', ';
+                    nombreCompleto += nombre[i].toLowerCase();
+          
+                    let nuevaEscuela='';
+                    if(escuela[i] == 'sis'){
+                         nuevaEscuela = 'sistemas';
+                    }
+                    else if (escuela[i] == 'sw'){
+                         nuevaEscuela = 'software';
+                    }
+          
+                    let nuevoPonderado = '';
+                    
+                    if(ponderado[i].length == 3){
+                         console.log('Hola Mundo');
+                         
+                         nuevoPonderado += '  ';
+                    }
+                    nuevoPonderado += ponderado[i].toString();
+          
+                    
+                    doc.text(id[i],50,(i*15 + 100),{});
+                    doc.text(nombreCompleto,110,(i*15 + 100),{});
+          
+                    doc.text(nuevaEscuela,350,(i*15 + 100),{});
+                    doc.text(situacion[i],430,(i*15 + 100),{});
+                    doc.text(desaprobados[i],480,(i*15 + 100),{});
+                    doc.text(nuevoPonderado,500,(i*15 + 100),{});
+               }
+          }
+          else{
+               let nombreCompleto = apellidos.toUpperCase();
                nombreCompleto += ', ';
-               nombreCompleto += nombre[i].toLowerCase();
+               nombreCompleto += nombre.toLowerCase();
      
                let nuevaEscuela='';
-               if(escuela[i] == 'sis'){
+               if(escuela == 'sis'){
                     nuevaEscuela = 'sistemas';
                }
-               else if (escuela[i] == 'sw'){
+               else if (escuela == 'sw'){
                     nuevaEscuela = 'software';
                }
      
                let nuevoPonderado = '';
                
-               if(ponderado[i].length == 3){
+               if(ponderado.length == 3){
                     console.log('Hola Mundo');
                     
                     nuevoPonderado += '  ';
                }
-               nuevoPonderado += ponderado[i].toString();
+               nuevoPonderado += ponderado.toString();
+
+               doc.text(id,50,(15 + 100),{});
+               doc.text(nombreCompleto,110,(15 + 100),{});
      
-               
-               doc.text(id[i],50,(i*15 + 100),{});
-               doc.text(nombreCompleto,110,(i*15 + 100),{});
-     
-               doc.text(nuevaEscuela,350,(i*15 + 100),{});
-               doc.text(situacion[i],430,(i*15 + 100),{});
-               doc.text(desaprobados[i],480,(i*15 + 100),{});
-               doc.text(nuevoPonderado,500,(i*15 + 100),{});
+               doc.text(nuevaEscuela,350,(15 + 100),{});
+               doc.text(situacion,430,(15 + 100),{});
+               doc.text(desaprobados,480,(15 + 100),{});
+               doc.text(nuevoPonderado,500,(15 + 100),{});
           }
+
      
           doc.end();
      
           console.log('Archivo generado');
           res.redirect('/alumno/listaAlumnos');
+     }catch(e){
+          throw e;
+     }
+})
+
+router.post('/imprimirAlumno', async (req, res) => { 
+     let {
+          imprimir_idAlumno,
+          imprimir_alumnoDni,
+          imprimir_alumnoFacultad,
+          imprimir_alumnoEscuela,
+          imprimir_alumnoApellidoPaterno,
+          imprimir_alumnoApellidoMaterno,
+          imprimir_alumnoNombre,
+          imprimir_alumnoFechaNacimento,
+          imprimir_alumnoSexo,
+          imprimir_alumnoCorreoIns,
+          imprimir_alumnoPlan,
+          imprimir_ocColegioProced,
+          imprimir_ocDependeDe,
+          imprimir_ocTrabajo,
+          imprimir_ocViveCon,
+          imprimir_ocTipoVivienda,
+          imprimir_ocTiempoTransporte,
+          imprimir_ocDicapacidad,
+          imprimir_ocTipoSeguro,
+          imprimir_ocApoderado,
+          imprimir_ocCorreoApoderado,
+          imprimir_ocTelefCasa,
+          imprimir_ocMovilApoderado,
+          imprimir_ocEstadoCivil,
+          imprimir_ocNumeroMovil,
+          imprimir_ocCorreoPersonal,
+          imprimir_ocObservacionPsicologica,
+          imprimir_sumPromedioPonderado,
+          imprimir_sumCantDesaprobados,
+          imprimir_sumCiclo,
+          imprimir_sumPermanencia,
+          imprimir_sumSituacionAcademica,
+          imprimir_sumDocenteTutor
+     } = req.body;
+
+     let doc = new PDF();
+     try{
+          doc.pipe(fs.createWriteStream(__dirname + `'../../../pdf/alumnos_${imprimir_idAlumno}.pdf`));
+
+          doc.text(`${imprimir_alumnoApellidoPaterno} ${imprimir_alumnoApellidoMaterno} ${imprimir_alumnoNombre}`, {
+               align: 'center'
+          });
+     
+          let salto_de_linea = `
+          `;
+     
+          doc.text(salto_de_linea, {
+               columns: 3,
+               align: 'justify'
+          })
+          
+          
+
+          if(imprimir_alumnoEscuela == 'sis'){
+               imprimir_alumnoEscuela = 'sistemas';
+          }
+          else if (imprimir_alumnoEscuela == 'sw'){
+               imprimir_alumnoEscuela = 'software';
+          }
+
+          if(imprimir_sumSituacionAcademica == 'regul'){
+               imprimir_sumSituacionAcademica = 'regular';
+          }
+          else if (imprimir_sumSituacionAcademica == 'obser'){
+               imprimir_sumSituacionAcademica = 'observado';
+          }
+
+          if(imprimir_sumPromedioPonderado.length == 3){
+               imprimir_sumPromedioPonderado = imprimir_sumPromedioPonderado + ' ';
+          }
+
+
+          
+          
+          let i = 0;
+          i++;
+
+          doc.text('Apellido paterno: ',            50,(15*i + 100),{});                doc.text(imprimir_alumnoApellidoPaterno,      220,(15*i + 100),{});     i++;    
+          doc.text('Apellido materno: ',            50,(15*i + 100),{});                doc.text(imprimir_alumnoApellidoMaterno,      220,(15*i + 100),{});     i++;
+          doc.text('Nombre: ',                      50,(15*i + 100),{});                doc.text(imprimir_alumnoNombre,               220,(15*i + 100),{});     i++;
+          doc.text('Codigo: ',                      50,(15*i + 100),{});                doc.text(imprimir_idAlumno,                   220,(15*i + 100),{});     i++;
+          doc.text('DNI: ',                         50,(15*i + 100),{});                doc.text(imprimir_alumnoDni,                  220,(15*i + 100),{});     i++;
+          doc.text('Facultad: ',                    50,(15*i + 100),{});                doc.text(imprimir_alumnoFacultad,             220,(15*i + 100),{});     i++;
+          doc.text('Escuela: ',                     50,(15*i + 100),{});                doc.text(imprimir_alumnoEscuela,              220,(15*i + 100),{});     i++;
+          doc.text('Plan de estudios: ',            50,(15*i + 100),{});                doc.text(imprimir_alumnoPlan,                 220,(15*i + 100),{});     i++;
+          doc.text('Correo institucional: ',        50,(15*i + 100),{});                doc.text(imprimir_alumnoCorreoIns,            220,(15*i + 100),{});     i++;
+          doc.text('Fecha de nacimiento: ',         50,(15*i + 100),{});                doc.text(imprimir_alumnoFechaNacimento,       220,(15*i + 100),{});     i++;
+          doc.text('Sexo: ',                        50,(15*i + 100),{});                doc.text(imprimir_alumnoSexo,                 220,(15*i + 100),{});     i++; i++;
+          doc.text('Colegio de precedencia: ',      50,(15*i + 100),{});                doc.text(imprimir_ocColegioProced,            220,(15*i + 100),{});     i++;
+          doc.text('Depende de alguien: ',          50,(15*i + 100),{});                doc.text(imprimir_ocDependeDe,                220,(15*i + 100),{});     i++;
+          doc.text('Trabajo: ',                     50,(15*i + 100),{});                doc.text(imprimir_ocTrabajo,                  220,(15*i + 100),{});     i++;
+          doc.text('Vive con alguien: ',            50,(15*i + 100),{});                doc.text(imprimir_ocViveCon,                  220,(15*i + 100),{});     i++;
+          doc.text('Tipo de vivienda: ',            50,(15*i + 100),{});                doc.text(imprimir_ocTipoVivienda,             220,(15*i + 100),{});     i++;
+          doc.text('Tiempo de transporte: ',        50,(15*i + 100),{});                doc.text(imprimir_ocTiempoTransporte,         220,(15*i + 100),{});     i++;
+          doc.text('Discapacidad presente: ',       50,(15*i + 100),{});                doc.text(imprimir_ocDicapacidad,              220,(15*i + 100),{});     i++;
+          doc.text('Tipo de seguro: ',              50,(15*i + 100),{});                doc.text(imprimir_ocTipoSeguro,               220,(15*i + 100),{});     i++;
+          doc.text('Observacion psicológica: ',     50,(15*i + 100),{});                doc.text(imprimir_ocObservacionPsicologica,   220,(15*i + 100),{});     i++;
+          doc.text('Estado civil: ',                50,(15*i + 100),{});                doc.text(imprimir_ocEstadoCivil,              220,(15*i + 100),{});     i++;
+          doc.text('Correo institucional: ',        50,(15*i + 100),{});                doc.text(imprimir_ocCorreoPersonal,           220,(15*i + 100),{});     i++;
+          doc.text('Número de celular: ',           50,(15*i + 100),{});                doc.text(imprimir_ocNumeroMovil,              220,(15*i + 100),{});     i++;
+          doc.text('Apoderado: ',                   50,(15*i + 100),{});                doc.text(imprimir_ocApoderado,                220,(15*i + 100),{});     i++;
+          doc.text('Correo del apoderado: ',        50,(15*i + 100),{});                doc.text(imprimir_ocCorreoApoderado,          220,(15*i + 100),{});     i++;
+          doc.text('Telefono de casa: ',            50,(15*i + 100),{});                doc.text(imprimir_ocTelefCasa,                220,(15*i + 100),{});     i++;
+          doc.text('Movil del apoderado: ',         50,(15*i + 100),{});                doc.text(imprimir_ocMovilApoderado,           220,(15*i + 100),{});     i++; i++;
+          doc.text('Ciclo actual del estudiante: ', 50,(15*i + 100),{});                doc.text(imprimir_sumCiclo,                   220,(15*i + 100),{});     i++;
+          doc.text('Promedio ponderado: ',          50,(15*i + 100),{});                doc.text(imprimir_sumPromedioPonderado,       220,(15*i + 100),{});     i++;
+          doc.text('N° cursos desaprobados: ',      50,(15*i + 100),{});                doc.text(imprimir_sumCantDesaprobados,        220,(15*i + 100),{});     i++;
+          doc.text('Permanencia académica: ',       50,(15*i + 100),{});                doc.text(imprimir_sumPermanencia,             220,(15*i + 100),{});     i++;
+          doc.text('Situacion académicao: ',        50,(15*i + 100),{});                doc.text(imprimir_sumSituacionAcademica,      220,(15*i + 100),{});     i++;
+          doc.text('Docente tutor: ',               50,(15*i + 100),{});                doc.text(imprimir_sumDocenteTutor,            220,(15*i + 100),{});     i++;
+
+
+     
+          doc.end();
+     
+          console.log('Archivo generado');
+          res.redirect(`/alumno/perfilAlumno/${imprimir_idAlumno}`);
      }catch(e){
           throw e;
      }
@@ -110,7 +276,11 @@ router.get('/perfilAlumno/:idAlumno', isLoggedIn, async (req, res) => {
 
      }
      
-     console.log(citas);
+     let date2 = new Date(alumnoCompleto[0].alumnoFechaNacimento);
+     mnth = ("0" + (date2.getMonth()+1)).slice(-2),
+     day  = ("0" + date2.getDate()).slice(-2);
+     alumnoCompleto[0].alumnoFechaNacimento = `${date2.getFullYear()}-${mnth}-${day}`;   
+     console.log(alumnoCompleto[0]);
      
      res.render('alumno/perfilAlumno', {a: alumnoCompleto[0], citas: citas});
 })
@@ -303,3 +473,37 @@ router.post('/editarPerfilAlumno/:idAlumno', isLoggedIn, async(req, res) => {
      res.render('alumno/perfilAlumno', {a: alumnoCompleto[0]});
 })
 module.exports = router;
+
+// doc.text('Apellido paterno: ',50,(15 + 100),{});
+// doc.text('Apellido materno: ',50,(15 + 100),{});
+// doc.text('Nombre: ',50,(15 + 100),{});
+// doc.text('Codigo: ',50,(15 + 100),{});
+// doc.text('DNI: ',50,(15 + 100),{});
+// doc.text('Facultad: ',50,(15 + 100),{});
+// doc.text('Escuela: ',50,(15 + 100),{});
+// doc.text('Plan de estudios: ',50,(15 + 100),{});
+// doc.text('Correo institucional: ',50,(15 + 100),{});
+// doc.text('Fecha de nacimiento: ',50,(15 + 100),{});
+// doc.text('Sexo: ',50,(15 + 100),{});
+// doc.text('Colegio de precedencia: ',50,(15 + 100),{});
+// doc.text('Depende de alguien: ',50,(15 + 100),{});
+// doc.text('Trabajo: ',50,(15 + 100),{});
+// doc.text('Vive con alguien: ',50,(15 + 100),{});
+// doc.text('Tipo de vivienda: ',50,(15 + 100),{});
+// doc.text('Tiempo de transporte: ',50,(15 + 100),{});
+// doc.text('Discapacidad presente: ',50,(15 + 100),{});
+// doc.text('Tipo de seguro: ',50,(15 + 100),{});
+// doc.text('Observacion psicológica: ',50,(15 + 100),{});
+// doc.text('Estado civil: ',50,(15 + 100),{});
+// doc.text('Correo institucional: ',50,(15 + 100),{});
+// doc.text('Número de celular: ',50,(15 + 100),{});
+// doc.text('Apoderado: ',50,(15 + 100),{});
+// doc.text('Correo del apoderado: ',50,(15 + 100),{});
+// doc.text('Telefono de casa: ',50,(15 + 100),{});
+// doc.text('Movil del apoderado: ',50,(15 + 100),{});
+// doc.text('Ciclo actual del estudiante: ',50,(15 + 100),{});
+// doc.text('Promedio ponderado: ',50,(15 + 100),{});
+// doc.text('N° cursos desaprobados: ',50,(15 + 100),{});
+// doc.text('Permanencia académica: ',50,(15 + 100),{});
+// doc.text('Situacion académicao: ',50,(15 + 100),{});
+// doc.text('Docente tutor: ',50,(15 + 100),{});

@@ -1,19 +1,18 @@
 <br>
     <div class="div container-fluid">
      <h3> Lista de alumnos</h3>
-
-      <!-- Breadcrumbs-->
-
-      <!-- Page Content -->
-
     <form action="/alumno/listaAlumnos" method="POST">
+      <div class='row text-rigth'>
+            {{!-- <button type="submit" class="btn btn-success" style="float:right;margin-top: 20px;" formaction="/alumno/listaAlumnos2">
+        <i class="fas fa-print"></i> Imprimir</button> --}}
+          </div>
       <div class='row'>
           <div class="col-md-3">
             <label>B&uacute;squeda</label>
             <input type="text" class="form-control"  placeholder="Nombres/codigo/dni" name="nombre">
           </div>
 
-          <div class='col-md-1'>
+          <div class='col-md-2'>
             <label>Escuela</label>
             <select class="form-control" name="escuela">
               <option value="0">Ambos</option>
@@ -32,7 +31,7 @@
           </div>
 
           <div class='col-md-2'>
-            <label>Cantidad desaprobados mayor a</label>
+            <label>N° desaprobados mayor a</label>
               <input type="number" class="form-control" name="desaprobados">
           </div>
 
@@ -44,19 +43,14 @@
           <div class='col-md-1'>
             <button type="submit" class="btn btn-info" style="float:left;margin-top: 20px;">Buscar</button>
           </div>
-          <div class='col-md-1'>
-            {{!-- <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;" formaction="/alumno/listaAlumnos2">Imprimir</button> --}}
-          </div>
-          
-
-        
+              
       </div>
     </form>
     
 
-     <br>
+
       <!-- DataTables Example -->
-      <div class="card mb-3">
+      <div class="card mb-3" style="margin-top:15px">
         <div type="text" class="card-body">
           <div class="table-responsive">          
             <table  class="table table-bordered" width="100%" cellspacing="0">
@@ -70,8 +64,6 @@
                   <th>Sit. academica</th>
                   <th>Cant. desaprobados</th>
                   <th>Ponderado</th>
-
-
                 </tr>
               </thead>
               <tbody>
@@ -97,7 +89,7 @@
                   <input style="display:none" type="text" name="ponderado" value="{{sumPromedioPonderado}}">
 
                 {{/each}}
-                  <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;" formaction="/alumno/listaAlumnos2">Imprimir</button>
+                  <button type="submit" class="btn btn-primary" style="float:left;margin-top: 20px;margin-bottom:15px" formaction="/alumno/listaAlumnos2"><i class="fas fa-print"></i> Imprimir</button>
                 </form>
 
               </tbody>
@@ -111,5 +103,11 @@
 
     </div>
     <!-- /.container-fluid -->
+<style>
+table td{
+  border:1px solid #c9c9c9;
+}
+</style>
+
 
 
